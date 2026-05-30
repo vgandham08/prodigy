@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stopwatch App</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    .stopwatch {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+
+    .buttons {
+      margin-bottom: 20px;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin: 5px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      opacity: 0.9;
+    }
+
+    #startBtn { background: #28a745; color: white; }
+    #pauseBtn { background: #ffc107; color: black; }
+    #resetBtn { background: #dc3545; color: white; }
+    #lapBtn   { background: #17a2b8; color: white; }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      max-height: 200px;
+      overflow-y: auto;
+      width: 200px;
+      text-align: left;
+    }
+
+    ul li {
+      background: rgba(255,255,255,0.1);
+      padding: 8px;
+      margin: 5px 0;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Stopwatch ⏱️</h1>
+  <div class="stopwatch" id="display">00:00:00</div>
+
+  <div class="buttons">
+    <button id="startBtn">Start</button>
+    <button id="pauseBtn">Pause</button>
+    <button id="resetBtn">Reset</button>
+    <button id="lapBtn">Lap</button>
+  </div>
+
+  <h2>Laps</h2>
+  <ul id="laps"></ul>
+
+  <script>
+    let [hours, minutes, seconds] = [0, 0, 0];
+    let display = document.getElementById("display");
+    let timer = null;
+
+    function updateDisplay() {
+      let h = hours < 10 ? "0" + hours : hours;
+      let m = minutes < 10 ? "0" + minutes : minutes;
+      let s = seconds < 10 ? "0" + seconds : seconds;
+      display.innerHTML = `${h}:${m}:${s}`;
+    }
+
+    function stopwatch() {
+      seconds++;
+      if (seconds === 60) {
+        seconds = 0;
+        minutes++;
+      }
+      if (minutes === 60) {
+        minutes = 0;
+        hours++;
+      }
+      updateDisplay();
+    }
+
+    document.getElementById("startBtn").addEventListener("click", () => {
+      if (timer !== null) return; // Prevent multiple intervals
+      timer = setInterval(stopwatch, 1000);
+    });
+
+    document.getElementById("pauseBtn").addEventListener("click", () => {
+      clearInterval(timer);
+      timer = null;
+    });
+
+    document.getElementById("resetBtn").addEventListener("click", () => {
+      clearInterval(timer);
+      timer = null;
+      [hours, minutes, seconds] = [0, 0, 0];
+      updateDisplay();
+      document.getElementById("laps").innerHTML = "";
+    });
+
+    document.getElementById("lapBtn").addEventListener("click", () => {
+      if (timer !== null) {
+        let laps = document.getElementById("laps");
+        let li = document.createElement("li");
+        li.innerText = display.innerText;
+        laps.appendChild(li);
+      }
+    });
+  </script>
+
+</body>
+</html>

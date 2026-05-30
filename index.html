@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Navigation Menu</title>
+  <style>
+    /* Reset default browser styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    /* Navigation Menu */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: transparent;
+      padding: 15px 40px;
+      display: flex;
+      justify-content: flex-end;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+      z-index: 1000;
+    }
+
+    nav.scrolled {
+      background: #222; /* Dark background on scroll */
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+    }
+
+    nav ul li {
+      display: inline-block;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #fff;
+      font-size: 18px;
+      padding: 8px 12px;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+    }
+
+    /* Hover Effect for Nav */
+    nav ul li a:hover {
+      background: #fff;
+      color: #222;
+    }
+
+    /* Sections */
+    section {
+      height: 100vh;
+      padding: 100px 40px;
+    }
+
+    section:nth-child(odd) {
+      background: #f4f4f4;
+    }
+
+    section:nth-child(even) {
+      background: #ddd;
+    }
+
+    /* Home Section (Hero Style) */
+    #home {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      background: linear-gradient(120deg, #89f7fe, #66a6ff);
+      color: #222;
+    }
+
+    #home h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+
+    #home p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin-bottom: 30px;
+    }
+
+    #home a {
+      background: #222;
+      color: #fff;
+      padding: 12px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+    }
+
+    #home a:hover {
+      background: #444;
+      transform: scale(1.05);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Menu -->
+  <nav id="navbar">
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Home Section -->
+  <section id="home">
+    <h1>Welcome to Our Website 🌟</h1>
+    <p>
+      We create modern, responsive web experiences that look good on any device.  
+      Scroll down to discover our services, story, and ways to connect!
+    </p>
+    <a href="#services">Explore Services</a>
+  </section>
+
+  <!-- Other Sections -->
+  <section id="services"><h1>Services Section</h1></section>
+  <section id="about"><h1>About Section</h1></section>
+  <section id="contact"><h1>Contact Section</h1></section>
+
+  <!-- JavaScript -->
+  <script>
+    const navbar = document.getElementById('navbar');
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+  </script>
+
+</body>
+</html>

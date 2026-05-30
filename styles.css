@@ -1,0 +1,58 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  line-height: 1.6;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #333;
+  color: white;
+  z-index: 1000;
+  transition: background-color 0.3s ease;
+  padding: 15px 0;
+}
+
+.navbar.scrolled {
+  background-color: #222;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.nav-links li a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: color 0.3s ease, border-bottom 0.3s ease;
+  padding: 5px 10px;
+}
+
+.nav-links li a:hover {
+  color: #ffcc00;
+  border-bottom: 2px solid #ffcc00;
+}
+
+/* Just to create scrollable content */
+section {
+  padding: 100px 20px;
+  margin-top: 60px;
+  min-height: 100vh;
+  background: #f0f0f0;
+}
+
+section:nth-child(even) {
+  background: #e0e0e0;
+}
